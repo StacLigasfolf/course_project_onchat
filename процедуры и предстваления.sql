@@ -1,5 +1,3 @@
--- представления 
-
 use onchat;
 
 CREATE OR REPLACE VIEW chat_info 
@@ -12,21 +10,20 @@ as select name, age
 from users, info_user
 where info_user.user_id = users.name
 
--- “Хранимые процедуры и функции, триггеры"
--- данна процедура будет возвращать приветствие в зависимости от времени суток
+-- РїСЂРѕС†РµРґСѓСЂР° РїСЂРёРІРµС‚СЃС‚РІРёСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІСЂРµРјРµРЅРё СЃСѓС‚РѕРє
 
 delimiter //
 CREATE PROCEDURE hello()
 BEGIN
 	CASE 
 		WHEN CURTIME() BETWEEN '06:00:00' AND '12:00:00' THEN
-			SELECT 'Доброе утро';
+			SELECT 'Р”РѕР±СЂРѕРµ СѓС‚СЂРѕ';
 		WHEN CURTIME() BETWEEN '12:00:00' AND '18:00:00' THEN
-			SELECT 'Добрый день';
+			SELECT 'Р”РѕР±СЂС‹Р№ РґРµРЅСЊ';
 		WHEN CURTIME() BETWEEN '18:00:00' AND '00:00:00' THEN
-			SELECT 'Добрый вечер';
+			SELECT 'Р”РѕР±СЂС‹Р№ РІРµС‡РµСЂ';
 		ELSE
-			SELECT 'Доброй ночи';
+			SELECT 'Р”РѕР±СЂРѕР№ РЅРѕС‡Рё';
 	END CASE;
 END //
 delimiter ;
